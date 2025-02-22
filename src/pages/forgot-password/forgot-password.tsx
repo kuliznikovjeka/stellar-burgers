@@ -24,7 +24,7 @@ export const ForgotPassword: FC = () => {
 
   return (
     <ForgotPasswordUI
-      errorText={error?.message}
+      errorText={error?.message || 'Ошибка восстановаления пароля'}
       email={email}
       setEmail={setEmail}
       handleSubmit={handleSubmit}
