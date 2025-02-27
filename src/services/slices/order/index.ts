@@ -1,7 +1,18 @@
 export {
-  fetchOrder,
+  orderBurger,
+  handleCloseOrderModal,
   orderErrorSelector,
   orderLoadingSelector,
-  orderSelector,
+  orderAcceptSelector,
+  orderRequestSelector,
+  orderModalDataSelector,
   orderReducer
-} from './order';
+} from './make-order-slice';
+
+export {
+  fetchOrder,
+  orderInfoErrorSelector,
+  orderInfoLoadingSelector,
+  orderInfoReducer,
+  orderInfoSelector
+} from './order-info-slice';

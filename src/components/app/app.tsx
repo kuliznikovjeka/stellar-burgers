@@ -18,6 +18,7 @@ import {
   Register,
   ResetPassword
 } from '@pages';
+import { fetchIngredients } from '@slices';
 import { useDispatch } from '../../services/store';
 import { checkUserAuth } from '../../services/slices/user/thunks';
 import '../../index.css';
@@ -29,6 +30,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(checkUserAuth());
+    dispatch(fetchIngredients());
   }, [dispatch]);
 
   const onCloseModal = () => navigate(-1);
@@ -39,7 +41,8 @@ const App = () => {
       <Routes>
         <Route path='*' element={<NotFound404 />} />
         <Route path='/' element={<ConstructorPage />} />
-        <Route path='/feed' element={<Feed />}>
+        <Route path='/feed'>
+          <Route index element={<Feed />} />
           <Route
             path=':number'
             element={
@@ -89,14 +92,15 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-          path='/profile'
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        >
+        <Route path='/profile'>
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path='orders'
             element={

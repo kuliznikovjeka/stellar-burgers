@@ -9,9 +9,9 @@ export const IngredientDetails: FC = () => {
   const { id: ingredientId } = useParams<{ id: string }>();
   const ingredients = useSelector(ingredientsSelector);
 
-  const ingredientData = ingredients.find((ingredient) => {
-    ingredient._id === ingredientId;
-  });
+  const ingredientData = ingredients.find(
+    (ingredient) => ingredient._id === ingredientId
+  );
 
   if (!ingredientData) {
     return <Preloader />;

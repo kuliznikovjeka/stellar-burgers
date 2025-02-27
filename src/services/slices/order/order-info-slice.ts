@@ -22,14 +22,14 @@ export const fetchOrder = createAsyncThunk(
   }
 );
 
-const orderSlice = createSlice({
-  name: 'order',
+const orderInfoSlice = createSlice({
+  name: 'orderInfo',
   initialState,
   reducers: {},
   selectors: {
-    orderSelector: (state) => state.orders,
-    orderErrorSelector: (state) => state.error,
-    orderLoadingSelector: (state) => state.isLoading
+    orderInfoSelector: (state) => state.orders,
+    orderInfoErrorSelector: (state) => state.error,
+    orderInfoLoadingSelector: (state) => state.isLoading
   },
   extraReducers: (builder) => {
     builder
@@ -49,6 +49,9 @@ const orderSlice = createSlice({
   }
 });
 
-export const { orderErrorSelector, orderLoadingSelector, orderSelector } =
-  orderSlice.selectors;
-export const orderReducer = orderSlice.reducer;
+export const {
+  orderInfoErrorSelector,
+  orderInfoLoadingSelector,
+  orderInfoSelector
+} = orderInfoSlice.selectors;
+export const orderInfoReducer = orderInfoSlice.reducer;

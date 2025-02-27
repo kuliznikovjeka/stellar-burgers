@@ -35,5 +35,5 @@ export const Feed: FC = () => {
     return <Informer>Лист заказов пуст</Informer>;
   }
 
-  <FeedUI orders={orders} handleGetFeeds={handleGetFeeds} />;
+  return <FeedUI orders={orders} handleGetFeeds={handleGetFeeds} />;
 };
