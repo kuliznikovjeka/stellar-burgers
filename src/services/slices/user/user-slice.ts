@@ -6,7 +6,6 @@ import {
   loginUser,
   logoutUser,
   registerUser,
-  resetPassword,
   updateUser
 } from './thunks';
 
@@ -18,6 +17,9 @@ type TInitialState = {
   loginError: string | null;
   registerError: string | null;
   checkAuthError: string | null;
+  logoutError: string | null;
+  updateUserError: string | null;
+  forgotPasswordError: string | null;
 };
 
 const initialState: TInitialState = {
@@ -27,7 +29,10 @@ const initialState: TInitialState = {
   isLoading: false,
   loginError: null,
   registerError: null,
-  checkAuthError: null
+  checkAuthError: null,
+  logoutError: null,
+  updateUserError: null,
+  forgotPasswordError: null
 };
 
 const userSlice = createSlice({
@@ -41,6 +46,8 @@ const userSlice = createSlice({
     loginErrorSelector: (state) => state.loginError,
     registerErrorSelector: (state) => state.registerError,
     checkAuthErrorSelector: (state) => state.checkAuthError,
+    updateUserErrorSelector: (state) => state.updateUserError,
+    forgotPasswordErrorSelector: (state) => state.forgotPasswordError,
     userLoadingSelector: (state) => state.isLoading
   },
   extraReducers: (builder) => {
@@ -92,6 +99,43 @@ const userSlice = createSlice({
         state.isAuthChecked = true;
         state.isAuthenticated = true;
         state.userData = action.payload.user;
+      })
+      .addCase(logoutUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.logoutError =
+          action.error.message || 'Не удалось выйти из аккаунта';
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.isLoading = false;
+        state.userData = null;
+        state.isAuthenticated = false;
+        state.isAuthChecked = true;
+      })
+      .addCase(updateUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.updateUserError =
+          action.error.message || 'Не удалось обновить данные пользователя';
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.userData = action.payload.user;
+      })
+      .addCase(forgotPassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(forgotPassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.forgotPasswordError =
+          action.error.message || 'Не удалось восстановить пароль';
+      })
+      .addCase(forgotPassword.fulfilled, (state) => {
+        state.isLoading = false;
       });
   }
 });
@@ -100,9 +144,11 @@ export const {
   isAuthCheckedSelector,
   userDataSelector,
   isAuthenticatedSelector,
+  userLoadingSelector,
   loginErrorSelector,
   registerErrorSelector,
   checkAuthErrorSelector,
-  userLoadingSelector
+  updateUserErrorSelector,
+  forgotPasswordErrorSelector
 } = userSlice.selectors;
 export const userReducer = userSlice.reducer;

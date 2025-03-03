@@ -23,7 +23,7 @@ export const ProtectedRoute: FC<ProtectedRouteProps> = ({
   }
 
   if (!onlyUnAuth && !user) {
-    return <Navigate replace to='/login' state={{ from: location }} />;
+    return <Navigate to='/login' replace state={{ from: location }} />;
   }
 
   if (onlyUnAuth && user) {

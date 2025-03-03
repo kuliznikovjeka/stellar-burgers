@@ -45,6 +45,7 @@ const makeOrderSlice = createSlice({
       .addCase(orderBurger.pending, (state) => {
         state.isLoading = true;
         state.orderRequest = true;
+        state.orderAccept = false;
         state.error = null;
       })
       .addCase(orderBurger.rejected, (state, action) => {

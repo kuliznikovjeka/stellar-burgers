@@ -45,17 +45,10 @@ export const forgotPassword = createAsyncThunk(
   }
 );
 
-export const resetPassword = createAsyncThunk(
-  'user/resetPassword',
-  async (data: { password: string; token: string }) => {
-    const response = await resetPasswordApi(data);
-    return response;
-  }
-);
-
 export const logoutUser = createAsyncThunk('user/logoutUser', async () => {
   const response = await logoutApi();
   localStorage.removeItem(REFRESH_TOKEN);
+  localStorage.removeItem(EMAIL);
   deleteCookie(ACCESS_TOKEN);
   return response;
 });

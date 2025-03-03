@@ -2,9 +2,20 @@ export {
   userReducer,
   isAuthCheckedSelector,
   userDataSelector,
+  userLoadingSelector,
   isAuthenticatedSelector,
   checkAuthErrorSelector,
   loginErrorSelector,
   registerErrorSelector,
-  userLoadingSelector
+  updateUserErrorSelector,
+  forgotPasswordErrorSelector
 } from './user-slice';
+
+export {
+  logoutUser,
+  checkUserAuth,
+  forgotPassword,
+  loginUser,
+  registerUser,
+  updateUser
+} from './thunks';

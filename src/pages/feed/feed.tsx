@@ -31,9 +31,5 @@ export const Feed: FC = () => {
     return <Informer variant='error'>{ordersError}</Informer>;
   }
 
-  if (!orders.length) {
-    return <Informer>Лист заказов пуст</Informer>;
-  }
-
   return <FeedUI orders={orders} handleGetFeeds={handleGetFeeds} />;
 };

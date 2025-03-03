@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
   BurgerIcon,
   ListIcon,
@@ -43,9 +43,11 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
           )}
         </NavLink>
       </div>
-      <div className={styles.logo}>
-        <Logo className='' />
-      </div>
+      <Link to='/'>
+        <div className={styles.logo}>
+          <Logo className='' />
+        </div>
+      </Link>
       <div className={styles.link_position_last}>
         <NavLink to='/profile'>
           {({ isActive }) => (
