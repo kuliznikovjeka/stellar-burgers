@@ -24,10 +24,7 @@ const initialState: TInitialState = {
   error: null
 };
 
-export const fetchFeeds = createAsyncThunk('feed/fetchFeeds', async () => {
-  const feeds = await getFeedsApi();
-  return feeds;
-});
+export const fetchFeeds = createAsyncThunk('feed/fetchFeeds', getFeedsApi);
 
 const feedsSlice = createSlice({
   name: 'feeds',

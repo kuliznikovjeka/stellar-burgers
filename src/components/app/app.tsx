@@ -25,7 +25,7 @@ import {
   Register,
   ResetPassword
 } from '@pages';
-import { fetchFeeds, fetchIngredients } from '@slices';
+import { fetchIngredients } from '@slices';
 import { useDispatch } from '../../services/store';
 import { checkUserAuth } from '../../services/slices/user/thunks';
 import '../../index.css';
@@ -43,7 +43,6 @@ const App = () => {
   useEffect(() => {
     dispatch(checkUserAuth());
     dispatch(fetchIngredients());
-    dispatch(fetchFeeds());
   }, [dispatch]);
 
   const onCloseModal = () => navigate(-1);

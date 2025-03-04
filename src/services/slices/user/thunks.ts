@@ -4,7 +4,6 @@ import {
   loginUserApi,
   logoutApi,
   registerUserApi,
-  resetPasswordApi,
   TLoginData,
   TRegisterData,
   updateUserApi
@@ -53,13 +52,7 @@ export const logoutUser = createAsyncThunk('user/logoutUser', async () => {
   return response;
 });
 
-export const checkUserAuth = createAsyncThunk(
-  'user/checkUserAuth',
-  async () => {
-    const response = await getUserApi();
-    return response;
-  }
-);
+export const checkUserAuth = createAsyncThunk('user/checkUserAuth', getUserApi);
 
 export const updateUser = createAsyncThunk(
   'user/updateUser',
